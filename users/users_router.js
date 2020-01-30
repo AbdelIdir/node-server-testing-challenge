@@ -51,9 +51,9 @@ router.get("/", (req, res) => {
 router.post("/register", (req, res) => {
   let user = req.body;
 
-  const hash = bcrypt.hashSync(user.password, 12);
+  //   const hash = bcrypt.hashSync(user.password, 12);
 
-  user.password = hash;
+  //   user.password = hash;
 
   Users.addUser(user)
     .then(saved => {
@@ -99,6 +99,22 @@ router.get("/logout", (req, res) => {
   } else {
   }
   res.status(200).json({ message: "you were not logged in to start with" });
+});
+
+router.delete("/:id", (req, res) => {
+  const { id } = req.params;
+
+  Users.removeUsers(id)
+    .then(deleted => {
+      if (deleted) {
+        res.json({ removed: deleted });
+      } else {
+        res.status(404).json({ message: "Could not find user with given id" });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Failed to delete user" });
+    });
 });
 
 module.exports = router;

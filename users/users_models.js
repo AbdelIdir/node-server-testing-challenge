@@ -45,11 +45,18 @@ function findByLog(filter_Username) {
     .first();
 }
 
+function removeUsers(id) {
+  return db("users")
+    .where({ id })
+    .del();
+}
+
 module.exports = {
   find,
   findUsersById,
   addUser,
   findRoles,
   addRoles,
-  findByLog
+  findByLog,
+  removeUsers
 };

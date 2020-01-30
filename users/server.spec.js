@@ -13,13 +13,21 @@ describe("server.js module", () => {
     });
   });
 
-  it("should", () => {
+  it("should return a 200 OK", () => {
     return request(server)
       .get("/api/users")
       .expect(200);
   });
 
-//     it("should ", () => {
-      
-//   });
+  it("returns the proper content type for the post request ", () => {
+    return request(server)
+      .post("/api/users/register")
+      .expect("Content-Type", /json/);
+  });
+
+  it("returns the right content length on delete request ", () => {
+    return request(server)
+      .delete("/api/users/5")
+      .expect("Content-Length", "13");
+  });
 });

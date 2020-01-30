@@ -28,6 +28,14 @@ describe("server.js module", () => {
   it("returns the right content length on delete request ", () => {
     return request(server)
       .delete("/api/users/5")
-      .expect("Content-Length", "13");
+      .expect("Content-Length", "47");
+  });
+
+  it("returns the right body for the delete request", () => {
+    return request(server)
+      .delete("/api/users/14")
+      .expect({
+        removed: 1
+      });
   });
 });

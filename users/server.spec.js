@@ -12,4 +12,14 @@ describe("server.js module", () => {
       expect(res.status).toBe(200);
     });
   });
+
+  it("should", () => {
+    return request(server)
+      .get("/api/users")
+      .expect(200);
+  });
+
+//     it("should ", () => {
+      
+//   });
 });
